@@ -17,7 +17,7 @@ Welcome to the Issue Tracking System! This application is designed to efficientl
 ![Issue Dashboard](https://drive.google.com/file/d/1tPfteEneW6CY3UWHRiY7ePza7TvfjDGt/view?usp)
 
 ### Creating a New Issue
-![Creating a New Issue](https://drive.google.com/file/d/1sqVqWCDruDkwD-QSPAZA4fmIwv4JdZHX/view?usp=sharing)
+![Creating a New Issue](https://drive.google.com/file/d/1sqVqWCDruDkwD-QSPAZA4fmIwv4JdZHX)
 
 ### Viewing Issue Details
 ![Viewing Issue Details](https://drive.google.com/file/d/1sqVqWCDruDkwD-QSPAZA4fmIwv4JdZHX/view?usp)
