@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
+
 # Configure logging
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -144,27 +145,37 @@ def ticket_counts():
         closed_tickets = 0
     return jsonify(open=open_tickets, closed=closed_tickets)
 
+
 @app.route('/total_open_time', methods=['POST'])
 def total_open_time():
     date = request.form['date']
-    try:
-        parsed_date = pd.to_datetime(date, format='%Y-%m-%d')
-    except ValueError:
-        return "Invalid date format. Please use YYYY-MM-DD."
 
     try:
+        # Convert the input date to a datetime object (already in YYYY-MM-DD format)
+        parsed_date = pd.to_datetime(date, format='%Y-%m-%d')
+
+        # Load the Excel file and convert the 'Date of Coming' to datetime
         df = pd.read_excel('tickets.xlsx')
-        df['Date of Coming'] = pd.to_datetime(df['Date of Coming'], errors='coerce')
-        
+        df['Date of Coming'] = pd.to_datetime(df['Date of Coming'], format='%Y-%m-%d', errors='coerce')
+
         # Filter tickets that were open on the specified date
         tickets_on_date = df[(df['Date of Coming'].dt.date == parsed_date.date()) & (df['Status'] == 'Open')]
-        
-        # Calculate the total open time in hours
-        total_open_time = tickets_on_date.apply(lambda row: (datetime.now() - row['Date of Coming']).total_seconds() / 3600, axis=1).sum()
-        
-        return f'Total open time on {date}: {total_open_time:.2f} hours'
+
+        # Calculate the total time each ticket has been open in hours
+        tickets_on_date['Open Duration (Hours)'] = (datetime.now() - tickets_on_date['Date of Coming']).dt.total_seconds() / 3600
+
+        # Sum the total open time
+        total_open_time = tickets_on_date['Open Duration (Hours)'].sum()
+
+        return f'Total open time on {parsed_date.strftime("%Y-%m-%d")}: {total_open_time:.2f} hours'
+    except ValueError:
+        return "Invalid date format. Please use YYYY-MM-DD."
     except Exception as e:
         return str(e)
+
+
+
+
 
 
 if __name__ == '__main__':

@@ -58,6 +58,8 @@
         <a href="/new_ticket" class="btn btn-primary">Generate Ticket</a>
         <a href="/ticket_info" class="btn btn-secondary">Ticket Information</a>
         <a href="/close_ticket" class="btn btn-danger">Close Ticket</a>
+        
+        <!-- Add date input for getting total open time -->
         <form action="/total_open_time" method="post" class="mt-3">
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" required>
@@ -65,6 +67,7 @@
         </form>
     </div>
     <script>
+        // Fetch ticket counts
         fetch('/ticket_counts')
             .then(response => response.json())
             .then(data => {
@@ -74,4 +77,5 @@
     </script>
 </body>
 </html>
+
 
