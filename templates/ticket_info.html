@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .info-form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        .info-form-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-form-container">
+        <h1>Ticket Information</h1>
+        <form action="/ticket_info" method="POST">
+            <div class="mb-3">
+                <label for="ticket_id" class="form-label">Ticket ID</label>
+                <input type="number" class="form-control" id="ticket_id" name="ticket_id" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Get Info</button>
+        </form>
+    </div>
+</body>
+</html>

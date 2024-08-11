@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .details-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        .details-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .details-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container">
+        <h1>Ticket Details</h1>
+        <div class="details-item"><strong>Issue:</strong> {{ ticket['Issue'] }}</div>
+        <div class="details-item"><strong>Reporter:</strong> {{ ticket['Reporter'] }}</div>
+        <div class="details-item"><strong>Date of Coming:</strong> {{ ticket['Date of Coming'] }}</div>
+        <div class="details-item"><strong>Reason:</strong> {{ ticket['Reason'] }}</div>
+        <div class="details-item"><strong>Phone Number:</strong> {{ ticket['Phone Number'] }}</div>
+        <div class="details-item"><strong>Closing Time:</strong> {{ ticket['Closing Time'] }}</div>
+        <div class="details-item"><strong>Status:</strong> {{ ticket['Status'] }}</div>
+    </div>
+</body>
+</html>

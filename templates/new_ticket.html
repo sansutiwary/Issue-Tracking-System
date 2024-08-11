@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Ticket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .ticket-form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        .ticket-form-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-control, .form-select {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-form-container">
+        <h1>New Ticket</h1>
+        <form action="/submit" method="POST">
+            <div class="mb-3">
+                <label for="issue" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="issue" name="issue" required>
+            </div>
+            <div class="mb-3">
+                <label for="reporter" class="form-label">Department</label>
+                <select class="form-select" id="reporter" name="reporter" required>
+                    <option selected>Select an option</option>
+                    <option value="IT">IT</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Support">Support</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="date_of_coming" class="form-label">Date of Coming</label>
+                <input type="date" class="form-control" id="date_of_coming" name="date_of_coming" required>
+            </div>
+            <div class="mb-3">
+                <label for="reason" class="form-label">Ticket Body</label>
+                <textarea class="form-control" id="reason" name="reason" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Create Ticket</button>
+        </form>
+    </div>
+</body>
+</html>
