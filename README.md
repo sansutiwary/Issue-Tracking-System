@@ -14,19 +14,20 @@ Welcome to the Issue Tracking System! This application is designed to efficientl
 ## Screenshots
 
 ### Issue Dashboard
-![Issue Dashboard](https://drive.google.com/file/d/1tPfteEneW6CY3UWHRiY7ePza7TvfjDGt/view?usp)
+![Issue Dashboard](https://drive.google.com/uc?export=view&id=1tPfteEneW6CY3UWHRiY7ePza7TvfjDGt)
 
 ### Creating a New Issue
-![Creating a New Issue](https://drive.google.com/file/d/1sqVqWCDruDkwD-QSPAZA4fmIwv4JdZHX)
+![Creating a New Issue](https://drive.google.com/uc?export=view&id=1-eb9Fdptf-PC74oDkSK6Yf3wzg7lgRl8)
 
 ### Viewing Issue Details
-![Viewing Issue Details](https://drive.google.com/file/d/1sqVqWCDruDkwD-QSPAZA4fmIwv4JdZHX/view?usp)
+![Viewing Issue Details](https://drive.google.com/uc?export=view&id=1sqVqWCDruDkwD-QSPAZA4fmIwv4JdZHX)
 
-### Issue Report Generation
-![Issue Report Generation](https://drive.google.com/uc?export=view&id=1pA3Ttk5Cwi7DZ1KaJqzRzZuC9G2nupSa)
+### Closing Ticket Generation
+![Closing Ticket Generation](https://drive.google.com/uc?export=view&id=1EudlL9AOCZyBduF8V3PoTyBKmWNmlBxo)
 
-### User Authentication (Planned)
-![User Authentication (Planned)](https://drive.google.com/uc?export=view&id=1QZKNyVS6LSxKl_I_wlUoJNKTTSG8uRPQ)
+### Total Time Open Ticket
+![Total Time Open Ticket](https://drive.google.com/uc?export=view&id=1ROfqXSntIv_XcRzJKpgcoj8RTaBwjz90)
+![Total Time Open Ticket](https://drive.google.com/uc?export=view&id=1zTr6xtBOPWAj7vgE0kAK5FAxb_tfYD0-)
 
 ## Future Improvements
 
