@@ -146,28 +146,66 @@ def ticket_counts():
     return jsonify(open=open_tickets, closed=closed_tickets)
 
 
+
+
+
 @app.route('/total_open_time', methods=['POST'])
-def total_open_time():
+def average_open_time():
     date = request.form['date']
 
     try:
-        # Convert the input date to a datetime object (already in YYYY-MM-DD format)
-        parsed_date = pd.to_datetime(date, format='%Y-%m-%d')
+        parsed_date = pd.to_datetime(date, format='%Y-%m-%d').date()
+        current_datetime = datetime.now()
 
-        # Load the Excel file and convert the 'Date of Coming' to datetime
+        # Load the ticket data
         df = pd.read_excel('tickets.xlsx')
         df['Date of Coming'] = pd.to_datetime(df['Date of Coming'], format='%Y-%m-%d', errors='coerce')
+        df['Closing Date'] = pd.to_datetime(df['Closing Date'], format='%Y-%m-%d', errors='coerce')
 
-        # Filter tickets that were open on the specified date
-        tickets_on_date = df[(df['Date of Coming'].dt.date == parsed_date.date()) & (df['Status'] == 'Open')]
+        total_open_time = 0.0
+        open_tickets_count = 0
 
-        # Calculate the total time each ticket has been open in hours
-        tickets_on_date['Open Duration (Hours)'] = (datetime.now() - tickets_on_date['Date of Coming']).dt.total_seconds() / 3600
+        for _, row in df.iterrows():
+            date_of_coming = row['Date of Coming'].date() if pd.notna(row['Date of Coming']) else None
+            closing_date = row['Closing Date'].date() if pd.notna(row['Closing Date']) else None
 
-        # Sum the total open time
-        total_open_time = tickets_on_date['Open Duration (Hours)'].sum()
+            if date_of_coming is None:
+                continue  # Skip if the date of coming is missing
 
-        return f'Total open time on {parsed_date.strftime("%Y-%m-%d")}: {total_open_time:.2f} hours'
+            if pd.isna(row['Closing Date']):
+                if date_of_coming <= parsed_date:
+                    if parsed_date == current_datetime.date():
+                        # Ticket is still open today, calculate from midnight to current time
+                        open_duration = (current_datetime - datetime.combine(parsed_date, datetime.min.time())).total_seconds() / 3600
+                    else:
+                        # Ticket was open the entire selected date
+                        open_duration = 24
+                else:
+                    open_duration = 0  # Ticket opened after the selected date, no time counted
+            elif closing_date == parsed_date:
+                # Ticket closed on the selected date, calculate time from midnight to closing time
+                closing_time_str = row['Closing Time']
+                if closing_time_str:
+                    closing_datetime = pd.to_datetime(f"{closing_date.strftime('%Y-%m-%d')} {closing_time_str}")
+                    open_duration = (closing_datetime - datetime.combine(parsed_date, datetime.min.time())).total_seconds() / 3600
+                else:
+                    open_duration = 0  # No closing time available
+            elif date_of_coming <= parsed_date and closing_date > parsed_date:
+                # Ticket was open the entire selected date (before closing on a later date)
+                open_duration = 24
+            else:
+                open_duration = 0  # Ticket was not open on the selected date
+
+            if open_duration > 0:
+                total_open_time += open_duration
+                open_tickets_count += 1
+
+        if open_tickets_count > 0:
+            average_open_time = total_open_time / open_tickets_count
+        else:
+            average_open_time = 0  # No tickets were open on the selected date
+
+        return f'Average open time per ticket on {parsed_date}: {average_open_time:.2f} hours'
     except ValueError:
         return "Invalid date format. Please use YYYY-MM-DD."
     except Exception as e:
@@ -176,7 +214,8 @@ def total_open_time():
 
 
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
