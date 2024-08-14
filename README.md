@@ -1,6 +1,5 @@
 # Issue Tracking System
 
-![Issue Tracking System Logo]
 
 Welcome to the Issue Tracking System! This application is designed to efficiently manage and track issues and tickets within a project or organization. It provides a user-friendly interface to monitor issue statuses, generate detailed reports, and gain valuable insights into ticket management.
 
